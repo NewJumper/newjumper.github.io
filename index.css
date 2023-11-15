@@ -7,11 +7,57 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.home-text {
-  top: 96px;
-  left: 96px;
-  position: absolute;
+.home-navlink {
   font-size: 50px;
+  align-self: flex-start;
   font-style: normal;
+  margin-top: var(--dl-space-space-twounits);
   font-weight: 700;
+  margin-left: var(--dl-space-space-twounits);
+  text-decoration: none;
+}
+.home-container1 {
+  flex: 0;
+  width: 100%;
+  display: flex;
+  align-self: center;
+  margin-top: var(--dl-space-space-sixunits);
+  align-items: center;
+  padding-top: 0px;
+  padding-left: 256px;
+  margin-bottom: var(--dl-space-space-sixunits);
+  padding-right: 256px;
+  padding-bottom: 0px;
+  justify-content: space-between;
+}
+.home-text {
+  color: var(--dl-color-gray-black);
+  font-size: 64px;
+  font-style: normal;
+  font-family: "Inter";
+  font-weight: 700;
+}
+.home-container2 {
+  gap: var(--dl-space-space-twounits);
+  flex: 0 0 auto;
+  width: 660px;
+  height: var(--dl-size-size-xxlarge);
+  display: flex;
+  margin-top: 0px;
+  align-items: center;
+  padding-top: 0px;
+  margin-bottom: 0px;
+  flex-direction: column;
+  padding-bottom: 0px;
+  justify-content: center;
+}
+.home-button {
+  width: 320px;
+  height: 64px;
+  font-size: 32px;
+}
+.home-button1 {
+  width: 320px;
+  height: 64px;
+  font-size: 32px;
 }
