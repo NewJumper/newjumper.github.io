@@ -12,9 +12,13 @@
   align-self: flex-start;
   font-style: normal;
   margin-top: var(--dl-space-space-twounits);
+  transition: 0.3s;
   font-weight: 700;
   margin-left: var(--dl-space-space-twounits);
   text-decoration: none;
+}
+.home-navlink:hover {
+  color: #1a6298;
 }
 .home-container1 {
   flex: 0;
@@ -24,9 +28,9 @@
   margin-top: var(--dl-space-space-sixunits);
   align-items: center;
   padding-top: 0px;
-  padding-left: 256px;
+  padding-left: 200px;
   margin-bottom: var(--dl-space-space-sixunits);
-  padding-right: 256px;
+  padding-right: 200px;
   padding-bottom: 0px;
   justify-content: space-between;
 }
@@ -34,8 +38,12 @@
   color: var(--dl-color-gray-black);
   font-size: 64px;
   font-style: normal;
+  transition: 0.3s;
   font-family: "Inter";
   font-weight: 700;
+}
+.home-text:hover {
+  color: #e88043;
 }
 .home-container2 {
   gap: var(--dl-space-space-twounits);
@@ -51,12 +59,13 @@
   padding-bottom: 0px;
   justify-content: center;
 }
-.home-button {
+.home-navlink1 {
   width: 320px;
   height: 64px;
   font-size: 32px;
+  text-decoration: none;
 }
-.home-button1 {
+.home-button {
   width: 320px;
   height: 64px;
   font-size: 32px;
