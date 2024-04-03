@@ -8,6 +8,8 @@ canvas.width = padding + gridSize * (tileSize + padding)
 canvas.height = padding + gridSize * (tileSize + padding)
 console.log(canvas)
 
+const t = document.getElementById("gridSize")
+
 for(let i = 0; i < gridSize; i++) {
     for(let j = 0; j < gridSize; j++) {
         context.fillStyle = "black"
