@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+}
+header {
+  background: #f87041;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: xx-large;
+  color: #ffffff;
+  text-shadow: 3px 3px #ae3d15;
+  text-align: center;
+  line-height: 50px;
+  padding: 5px;
+  transition: 0.2s;
+}
+header:hover {
+  background: #41b5f8;
+  text-shadow: 3px 3px #1770a4;
+  transition: 0.2s;
+}
+.direct-text {
+  color: #ffffff;
+  text-decoration: none;
+  margin: auto;
+}
+section {
+  padding: 20px;
+  display: flex;
+}
+div {
+  background: #000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  width: 100px;
+  height: 32px;
+  margin: auto;
+}
+button {
+  border-radius: 10px;
+}
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+}
+input { 
+  padding: 0;
+  margin: auto;
+  display: block;
+}
