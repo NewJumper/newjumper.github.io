@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>newjumper</title>
+    <title>Guess the Song</title>
     <link rel="stylesheet" href="styles.css">
   </head>
 
@@ -11,10 +11,19 @@
       <header>newjumper</header>
     </a>
 
-    this is game 1
-  </body>
+    <div class="game-container">
+      <div id="lyrics">
+        song lines here
+      </div>
+      <input text="guess" id="guess-input" placeholder="Enter your guess">
+      <button id="submit-guess">
+        Submit Guess
+      </button>
+      <div id="previous-guesses">
+        previous guesses here
+      </div>
+    </div>
 
-  <canvas id="ctx" width="512" height="512" style="border:1px solid #000000; background-color: white;"></canvas>
-  <input type="text" id="gridSize" maxlength="3" placeholder="Grid Size">
-  <script src="index.js"></script>
+    <script src="lyric-game.js"></script>
+  </body>
 </html>
