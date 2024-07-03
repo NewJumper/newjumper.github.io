@@ -45,13 +45,14 @@ function startGame() {
 }
 
 function displayLyrics() {
-    const lyricsContainer = document.getElementById('lyrics-container');
-    const lineToShow = currentSong.lyrics[currentLineIndex];
-    const newLineElement = document.createElement('div');
-    newLineElement.textContent = lineToShow;
-    lyricsContainer.appendChild(newLineElement);
+    const container = document.getElementById('lyrics-container');
+    const nextLine = currentSong.lyrics[currentLineIndex];
+    const newLine = document.createElement('div');
+    newLine.textContent = nextLine;
+    container.appendChild(newLine);
+    if (container.childNodes.length > 16) container.removeChild(container.firstChild)
     
-    lyricsContainer.scrollTop = lyricsContainer.scrollHeight;
+    container.scrollTop = container.scrollHeight;
 }
 
 document.getElementById('submit-guess').addEventListener('click', () => {
@@ -73,16 +74,16 @@ document.getElementById('guess-input').addEventListener('keydown', (event) => {
 });
 
 function submitGuess() {
-    const userGuess = document.getElementById('guess-input').value;
+    const guess = document.getElementById('guess-input').value;
 
-    if (userGuess.toLowerCase() === currentSong.title.toLowerCase()) {
+    if (guess.toLowerCase() === currentSong.title.toLowerCase()) {
         console.log("correct!")
         startGame();
     } else {
         currentLineIndex = Math.floor(Math.random() * currentSong.lyrics.length);
         displayLyrics();
-        if(userGuess !== '') {
-            guessHistory.unshift(userGuess);
+        if(guess !== '') {
+            guessHistory.unshift(guess);
         }
     }
     document.getElementById('guess-input').value = '';

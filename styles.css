@@ -57,18 +57,20 @@ section {
 #lyrics-container {
   margin-bottom: 20px;
   font-size: 1.2em;
-}
-#guess-input {
-  padding: 10px;
-  width: 80%;
-  border: 1px solid #bbb;
-  border-radius: 10px;
+  height: 50vh;
 }
 #input-container button {
   padding: 10px 20px;
   color: #fff;
   border-radius: 10px;
   cursor: pointer;
+}
+#guess-input {
+  margin: 0px 10px;
+  padding: 10px;
+  width: 40%;
+  border: 1px solid #bbb;
+  border-radius: 10px;
 }
 #skip-song {
   background-color: #cc5858;
