@@ -49,6 +49,11 @@ function displayLyrics() {
     const nextLine = currentSong.lyrics[currentLineIndex];
     const newLine = document.createElement('div');
     newLine.textContent = nextLine;
+    if (container.childNodes.length > 0) {
+        const children = Array.from(container.children);
+        children[children.length - 1].style.color = 'gray';
+        children[children.length - 1].style.fontSize = 15;
+    }
     container.appendChild(newLine);
     if (container.childNodes.length > Math.min(15, container.scrollHeight / 22)) container.removeChild(container.firstChild)
     
