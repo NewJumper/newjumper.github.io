@@ -50,7 +50,7 @@ function displayLyrics() {
     const newLine = document.createElement('div');
     newLine.textContent = nextLine;
     container.appendChild(newLine);
-    if (container.childNodes.length > 16) container.removeChild(container.firstChild)
+    if (container.childNodes.length > Math.min(15, container.scrollHeight / 22)) container.removeChild(container.firstChild)
     
     container.scrollTop = container.scrollHeight;
 }
