@@ -30,23 +30,28 @@ const songs = [
 ]
 
 let currentSong;
-let currentLineIndex = 0;
-let previousGuesses = [];
+let currentLineIndex;
+let guessHistory;
+let guessIndex;
 
 function startGame() {
     currentSong = songs[Math.floor(Math.random() * songs.length)];
     currentLineIndex = Math.floor(Math.random() * currentSong.lyrics.length);
-    previousGuesses = [];
-    displayCurrentLine();
-    updatePreviousGuesses();
+    guessHistory = [];
+    guessIndex = -1;
+
+    document.getElementById('lyrics-container').innerHTML = '';
+    displayLyrics();
 }
 
-function displayCurrentLine() {
-    document.getElementById('lyrics').innerText = currentSong.lyrics[currentLineIndex];
-}
-
-function updatePreviousGuesses() {
-    document.getElementById('previous-guesses').innerText = previousGuesses.join(', ');
+function displayLyrics() {
+    const lyricsContainer = document.getElementById('lyrics-container');
+    const lineToShow = currentSong.lyrics[currentLineIndex];
+    const newLineElement = document.createElement('div');
+    newLineElement.textContent = lineToShow;
+    lyricsContainer.appendChild(newLineElement);
+    
+    lyricsContainer.scrollTop = lyricsContainer.scrollHeight;
 }
 
 document.getElementById('submit-guess').addEventListener('click', () => {
@@ -59,6 +64,14 @@ document.getElementById('guess-input').addEventListener('keypress', (event) => {
     }
 });
 
+document.getElementById('guess-input').addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') {
+        cycleGuesses('up')
+    } else if (event.key === 'ArrowDown') {
+        cycleGuesses('down')
+    }
+});
+
 function submitGuess() {
     const userGuess = document.getElementById('guess-input').value;
 
@@ -67,13 +80,30 @@ function submitGuess() {
         startGame();
     } else {
         currentLineIndex = Math.floor(Math.random() * currentSong.lyrics.length);
-        displayCurrentLine();
+        displayLyrics();
         if(userGuess !== '') {
-            previousGuesses.push(userGuess);
-            updatePreviousGuesses();
+            guessHistory.unshift(userGuess);
         }
     }
     document.getElementById('guess-input').value = '';
+}
+
+function cycleGuesses(direction) {
+    if (guessHistory.length === 0) return;
+    
+    if (direction === 'up' && guessIndex < guessHistory.length - 1) {
+        guessIndex++
+    } else if (direction === 'down') {
+        if (guessIndex > 0) {
+            guessIndex--;
+        } else {
+            guessIndex = -1;
+            document.getElementById('guess-input').value = '';
+            return;
+        }
+    }
+    
+    document.getElementById('guess-input').value = guessHistory[guessIndex];
 }
 
 // Start the game when the page loads

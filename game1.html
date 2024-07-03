@@ -8,19 +8,22 @@
 
   <body>
     <a class="direct-text" href="index.html">
-      <header>newjumper</header>
+      <header id="game-header">newjumper</header>
     </a>
 
     <div class="game-container">
-      <div id="lyrics">
+      <div id="lyrics-container">
         song lines here
       </div>
-      <input text="guess" id="guess-input" placeholder="Enter your guess">
-      <button id="submit-guess">
-        Submit Guess
-      </button>
-      <div id="previous-guesses">
-        previous guesses here
+
+      <div id="input-container">
+        <button id="skip-song">
+          Skip
+        </button>
+        <input text="guess" id="guess-input" placeholder="Enter your guess">
+        <button id="submit-guess">
+          Submit Guess
+        </button>
       </div>
     </div>
 
