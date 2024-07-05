@@ -1,22 +1,36 @@
-const theMaybeMan = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/ajr/the%20maybe%20man.txt'
+const theMaybeMan = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/AJR/The%20Maybe%20Man.txt'
+const okOrchestra = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/AJR/OK%20ORCHESTRA.txt'
 
 commenceTesting(-1)
 
+let allSongs = ["test"]
+
 function commenceTesting(index) {
     fetch(theMaybeMan).then(response => response.text()).then(data => {
+        albumName = getAlbumName(theMaybeMan)
+        console.log(albumName)
+
         songs = data.split(/(?:^|\n)(?=\w.*?=)/)
-        const container = document.getElementById('testing-container');
+        songs.unshift(albumName)
+        const container = document.getElementById('testing-container')
+        allSongs.push(songs)
+        console.log(allSongs)
         if(index == -1) {
             container.innerText = 'hi'
         } else {
-            index = index % songs.length
+            index = index % allSongs.length
             console.log(index)
-            container.innerText = songs[index]
+            container.innerText = allSongs[index]
         }
     })
 }
 
+function getAlbumName(fileName) {
+    songName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.'))
+    return songName.replaceAll('%20', ' ')
+}
+
 document.getElementById('test-button').addEventListener('click', () => {
-    const value = document.getElementById('test-input').value;
-    commenceTesting(value);
+    const value = document.getElementById('test-input').value
+    commenceTesting(value)
 });
