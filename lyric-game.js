@@ -1,54 +1,82 @@
-const songs = [
-    {
-        "title": "song 1",
-        "lyrics": [
-            "line 1 of song 1",
-            "line 2 of song 1",
-            "line 3 of song 1"
-        ]
-    },
-    {
-        "title": "song 2",
-        "artist": "blur",
-        "lyrics": [
-            "I got my head checked",
-            "By a jumbo jet",
-            "It wasn't easy",
-            "But nothing is",
-            "Woo-hoo",
-            "When I feel heavy metal",
-            "(Woo-hoo) And I'm pins and I'm needles",
-            "(Woo-hoo) Well, I lie and I'm easy",
-            "All of the time but I'm never sure why I need you",
-            "Pleased to meet you",
-            "I got my head done",
-            "When I was young",
-            "It's not my problem",
-            "Yeah, yeah"
-        ]
-    }
-]
+const clancy = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Clancy.txt'
+const scaledAndIcy = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Scaled%20And%20Icy.txt'
+const trench = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Trench.txt'
+const blurryface = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Blurryface.txt'
 
-let currentSong;
-let currentLineIndex;
-let guessHistory;
-let guessIndex;
+let loadedSongs = [];
+let songIndices = [];
+let currentSongIndex = 0;
+let currentSongName;
+let currentSong = [];
+let guessHistory = []
+let guessIndex = -1
+
+loadSongs();
+
+async function loadSongs() {
+    const clancyF = fetch(clancy).then(response => response.text());
+    const saiF = fetch(scaledAndIcy).then(response => response.text());
+    const trenchF = fetch(trench).then(response => response.text());
+
+    const [clancyData, saiData, trenchData] = await Promise.all([clancyF, saiF, trenchF]);
+
+    splitLines(clancyData, 0);
+    splitLines(saiData, 1);
+    splitLines(trenchData, 2);
+
+    shuffleIndices();
+    startGame();
+}
+
+function splitLines(data, index) {
+    let songs = data.split(/(?:^|\n)(?=\w.*?=)/);
+    storeIndices(songs.length, index)
+    loadedSongs[index] = [];
+
+    for (let song of songs) {
+        lines = song.split(/\n/);
+        loadedSongs[index].push(lines);
+    }
+}
+
+function storeIndices(size, a) {
+    for (let i = 0; i < size; i++) {
+        songIndices.push([a, i])
+    }
+}
+
+function shuffleIndices() {
+    for (let i = songIndices.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1))
+        let index = songIndices[i]
+        songIndices[i] = songIndices[j]
+        songIndices[j] = index
+    }
+}
 
 function startGame() {
-    currentSong = songs[Math.floor(Math.random() * songs.length)];
-    currentLineIndex = Math.floor(Math.random() * currentSong.lyrics.length);
-    guessHistory = [];
-    guessIndex = -1;
+    currentSongIndex++;
+    if (currentSongIndex >= songIndices.length) {
+        document.getElementById('lyrics-container').innerHTML = 'You did it! W\'s in the chat';
+        document.getElementById('guess-input').value = 'WWWWWWWWWWWWWWWW';
+        return;
+    }
+    const index = songIndices[currentSongIndex];
+    currentSong = loadedSongs[index[0]][index[1]];
+    currentSongName = currentSong[0].replace('=', '');
 
     document.getElementById('lyrics-container').innerHTML = '';
     displayLyrics();
 }
 
 function displayLyrics() {
+    let lineIndex = Math.floor(Math.random() * (currentSong.length - 1)) + 1; // [1, song.length], basically excluding the song title
+
     const container = document.getElementById('lyrics-container');
-    const nextLine = currentSong.lyrics[currentLineIndex];
+    const songLine = currentSong[lineIndex];
     const newLine = document.createElement('div');
-    newLine.textContent = nextLine;
+    newLine.textContent = songLine;
+    
     if (container.childNodes.length > 0) {
         const children = Array.from(container.children);
         children[children.length - 1].style.color = 'gray';
@@ -59,10 +87,6 @@ function displayLyrics() {
     
     container.scrollTop = container.scrollHeight;
 }
-
-document.getElementById('submit-guess').addEventListener('click', () => {
-    submitGuess();
-});
 
 document.getElementById('guess-input').addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
@@ -81,16 +105,16 @@ document.getElementById('guess-input').addEventListener('keydown', (event) => {
 function submitGuess() {
     const guess = document.getElementById('guess-input').value;
 
-    if (guess.toLowerCase() === currentSong.title.toLowerCase()) {
+    if (guess.toLowerCase() === currentSongName.toLowerCase()) {
         console.log("correct!")
         startGame();
     } else {
-        currentLineIndex = Math.floor(Math.random() * currentSong.lyrics.length);
         displayLyrics();
         if(guess !== '') {
             guessHistory.unshift(guess);
         }
     }
+    
     document.getElementById('guess-input').value = '';
 }
 
@@ -111,6 +135,3 @@ function cycleGuesses(direction) {
     
     document.getElementById('guess-input').value = guessHistory[guessIndex];
 }
-
-// Start the game when the page loads
-startGame();
