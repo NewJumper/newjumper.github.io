@@ -1,0 +1,19 @@
+.menu-bar {
+  display: flex;
+}
+
+.menu-bar button {
+  padding: 10px;
+  color: #fff;
+  background-color: #818f96;
+  border: 1px solid #5e6d75;
+  width: 100%;
+}
+.menu-bar button:hover {
+  background-color: #88969d;
+}
+
+section {
+  padding: 20px;
+  display: flex;
+}
