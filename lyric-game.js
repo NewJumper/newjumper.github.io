@@ -5,7 +5,7 @@ const blurryface = 'https://raw.githubusercontent.com/NewJumper/newjumper.github
 
 let loadedSongs = [];
 let songIndices = [];
-let currentSongIndex = 0;
+let currentSongIndex = -1;
 let currentSongName;
 let currentSong = [];
 let guessHistory = []
