@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>newjumper</title>
     <link rel="stylesheet" href="css/global.css">
+    <script src="scripts/toggle-theme.js" defer></script>
   </head>
 
   <body>
-    <a class="direct-text" href="index.html">
-      <header>newjumper</header>
-    </a>
+    <topbar>
+      <header onclick="window.location.href='index.html'">newjumper</header>
+      <img id="theme-toggle" src="resources/assets/lyrics_guess/dark-mode.svg" onclick="toggleTheme()">
+    </topbar>
 
     <input text="test" id="test-input" placeholder="number pls">
     <button id="test-button">Commence Testing</button>

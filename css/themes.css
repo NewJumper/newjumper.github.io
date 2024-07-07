@@ -1,0 +1,31 @@
+/* light mode */
+:root {
+  /* global */
+  --bg-color: #fff;
+  --text-color: #000;
+  --header-bg: #114762;
+  --header-bg-hover: #13506f;
+  /* homepage */
+  --menubar-bg: #05718f;
+  --menubar-bg-hover: #0a7c9c;
+  /* lyric game */
+  --game-input-bg-color: #fff;
+  --game-input-text-color: #000;
+  --game-input-border-color: #bbb;
+}
+
+.dark-mode {
+  /* global */
+  --bg-color: #1c1e23;
+  --text-color: #fff;
+  --header-bg: #162335;
+  --header-bg-hover: #1a2940;
+  /* homepage */
+  --menubar-bg: #28415e;
+  --menubar-bg-hover: #2d4869;
+  /* lyric game */
+  --game-bg-color: #23252b;
+  --game-input-bg-color: #2a2c33;
+  --game-input-text-color: #fff;
+  --game-input-border-color: var(--bg-color);
+}

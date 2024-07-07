@@ -5,15 +5,14 @@
 .menu-bar button {
   padding: 10px;
   color: #fff;
-  background-color: #818f96;
-  border: 1px solid #5e6d75;
+  background-color: var(--menubar-bg);
+  border: 1px solid var(--header-bg);
   width: 100%;
 }
 .menu-bar button:hover {
-  background-color: #88969d;
+  background-color: var(--menubar-bg-hover);
 }
 
 section {
-  padding: 20px;
-  display: flex;
+  margin: 20px;
 }
