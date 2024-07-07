@@ -88,13 +88,19 @@ function displayLyrics() {
     container.scrollTop = container.scrollHeight;
 }
 
-document.getElementById('guess-input').addEventListener('keypress', (event) => {
+function skipSong() {
+    if (currentSongIndex >= songIndices.length) return;
+    console.log('skipped');
+    startGame();
+}
+
+document.getElementById('guess-input').addEventListener('keypress', event => {
     if (event.key === 'Enter') {
         submitGuess();
     }
 });
 
-document.getElementById('guess-input').addEventListener('keydown', (event) => {
+document.getElementById('guess-input').addEventListener('keydown', event => {
     if (event.key === 'ArrowUp') {
         cycleGuesses('up')
     } else if (event.key === 'ArrowDown') {
@@ -103,19 +109,18 @@ document.getElementById('guess-input').addEventListener('keydown', (event) => {
 });
 
 function submitGuess() {
+    if (currentSongIndex >= songIndices.length) return;
+
     const guess = document.getElementById('guess-input').value;
+    document.getElementById('guess-input').value = '';
 
     if (guess.toLowerCase() === currentSongName.toLowerCase()) {
         console.log("correct!")
         startGame();
     } else {
+        if(guess !== '') guessHistory.unshift(guess);
         displayLyrics();
-        if(guess !== '') {
-            guessHistory.unshift(guess);
-        }
     }
-    
-    document.getElementById('guess-input').value = '';
 }
 
 function cycleGuesses(direction) {
