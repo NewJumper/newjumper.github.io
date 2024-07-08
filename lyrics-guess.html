@@ -12,15 +12,16 @@
     <topbar>
       <header onclick="window.location.href='index.html'">newjumper</header>
       <img id="theme-toggle" src="resources/assets/global/dark-mode.svg" onclick="toggleTheme()">
+      <img id="settings" src="resources/assets/lyrics_guess/settings.svg" onclick="toggleSettings()">
+      <img id="scores" src="resources/assets/lyrics_guess/scores.svg" onclick="toggleScores()">
     </topbar>
 
     <div class="triple-content">
-      <!-- <div class="sidebar" id="left-sidebar">
-        <img id="menu-icon" src="resources/assets/lyrics_guess/menu.png">
-        left sidebar
-      </div> -->
+      <div class="sidebars" id="settings-menu">
+        Settings
+      </div>
 
-      <div class="game-container">
+      <div id="game-container">
         <div id="lyrics-container">
           song lines here
         </div>
@@ -36,9 +37,9 @@
         </div>
       </div>
 
-      <!-- <div class="sidebar" id="right-sidebar">
-        right sidebar
-      </div> -->
+      <div class="sidebars" id="scores-menu">
+        Scores
+      </div>
     </div>
 
     <script src="scripts/lyric-game.js"></script>

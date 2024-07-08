@@ -1,21 +1,73 @@
+/* icons */
+#settings {
+  position: absolute;
+  top: 11px;
+  left: 32px;
+  width: 32px;
+  height: 32px;
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+  user-select: none;
+}
+#settings:hover {
+  transform: scale(1.1);
+  background-color: #ffffff11;
+}
+
+#scores {
+  position: absolute;
+  top: 11px;
+  left: 70px;
+  width: 32px;
+  height: 32px;
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+  user-select: none;
+}
+#scores:hover {
+  transform: scale(1.1);
+  background-color: #ffffff11;
+}
+
 /* layout */
 .triple-content {
   display: flex;
   justify-content: center;
 }
 
-.sidebar {
-  padding: 10px;
+.sidebars {
+  position: absolute;
+  margin: 20px 0px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  color: black;
-  background-color: #fff;
-  box-shadow: 0 0 10px #0000001a;
-  border-radius: 8px;
-  width: 250px;
+  align-items: center;
+  background: var(--game-bg-color);
+  box-shadow: 0 0 10px #0000002a;
+  top: 55px;
+  height: 50vh;
+  transition: 0.5s ease-in-out;
 }
 
-.game-container {
+#settings-menu {
+  border-radius: 0px 8px 8px 0px;
+  left: -400px;
+  width: 320px;
+}
+#settings-menu.open {
+  left: 0;
+}
+
+#scores-menu {
+  border-radius: 8px 0px 0px 8px;
+  right: -400px;
+  width: 320px;
+}
+#scores-menu.open {
+  right: 0;
+}
+
+#game-container {
   margin: 20px;
   padding: 20px;
   display: flex;

@@ -140,3 +140,13 @@ function cycleGuesses(direction) {
     
     document.getElementById('guess-input').value = guessHistory[guessIndex];
 }
+
+function toggleSettings() {
+    const settingsMenu = document.getElementById('settings-menu');
+    settingsMenu.classList.toggle('open');
+}
+
+function toggleScores() {
+    const scoresMenu = document.getElementById('scores-menu');
+    scoresMenu.classList.toggle('open');
+}
