@@ -13,6 +13,23 @@
   background-color: var(--menubar-bg-hover);
 }
 
-section {
+body h1 {
   margin: 20px;
+}
+
+.changelog {
+  margin: 10px 20px 20px;
+}
+
+.changelog td {
+  padding: 5px;
+}
+
+.changelog .date {
+  padding-top: 20px;
+  width: 80px;
+  white-space: nowrap;
+}
+.changelog .desc {
+  padding-top: 20px;
 }
