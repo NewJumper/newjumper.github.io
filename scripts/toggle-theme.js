@@ -1,3 +1,4 @@
+document.documentElement.classList.toggle('dark-mode', localStorage.getItem('theme') === 'dark');
 document.addEventListener('DOMContentLoaded', loadTheme);
 
 function loadTheme() {
