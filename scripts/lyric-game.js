@@ -1,8 +1,3 @@
-const clancy = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Clancy.txt'
-const scaledAndIcy = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Scaled%20And%20Icy.txt'
-const trench = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Trench.txt'
-const blurryface = 'https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/Twenty%20One%20Pilots/Blurryface.txt'
-
 let loadedSongs = [];
 let songIndices = [];
 let currentSongIndex = -1;
@@ -11,19 +6,39 @@ let currentSong = [];
 let guessHistory = []
 let guessIndex = -1
 
-loadSongs();
+let artists = ['AJR', 'Sabrina Carpenter', 'Taylor Swift', 'Twenty One Pilots'];
+let selectedArtists = ['AJR'];
+
+document.addEventListener('DOMContentLoaded', () => {
+    selectedArtists = JSON.parse(localStorage.getItem('selectedArtists')) || ['AJR'];
+    loadSongs();
+});
 
 async function loadSongs() {
-    const clancyF = fetch(clancy).then(response => response.text());
-    const saiF = fetch(scaledAndIcy).then(response => response.text());
-    const trenchF = fetch(trench).then(response => response.text());
+    loadedSongs = [];
+    songIndices = [];
+    currentSongIndex = -1;
+    currentSongName = "";
+    currentSong = [];
 
-    const [clancyData, saiData, trenchData] = await Promise.all([clancyF, saiF, trenchF]);
+    const source = 'https://api.github.com/repos/NewJumper/newjumper.github.io/contents/resources/lyrics_guess/';
+    let index = 0;
+    
+    for (let artist of selectedArtists) {
+        const path = `https://raw.githubusercontent.com/NewJumper/newjumper.github.io/master/resources/lyrics_guess/${artist}/`;
+        const files = await fetch(source + artist).then(response => response.json());
+        const albums = [];
+        for (let file of files) {
+            albums.push(fetch(path + file.name).then(response => response.text()));
+        }
 
-    splitLines(clancyData, 0);
-    splitLines(saiData, 1);
-    splitLines(trenchData, 2);
+        const queriedAlbums = await Promise.all(albums);
+        for (let album of queriedAlbums) {
+            splitLines(album, index++);
+        }
+    }
 
+    console.log(loadedSongs)
     shuffleIndices();
     startGame();
 }
@@ -83,7 +98,7 @@ function displayLyrics() {
         children[children.length - 1].style.fontSize = 15;
     }
     container.appendChild(newLine);
-    if (container.childNodes.length > Math.min(15, container.scrollHeight / 22)) container.removeChild(container.firstChild)
+    if (container.childNodes.length > Math.min(15, container.scrollHeight / 22)) container.removeChild(container.firstChild);
     
     container.scrollTop = container.scrollHeight;
 }
@@ -102,9 +117,9 @@ document.getElementById('guess-input').addEventListener('keypress', event => {
 
 document.getElementById('guess-input').addEventListener('keydown', event => {
     if (event.key === 'ArrowUp') {
-        cycleGuesses('up')
+        cycleGuesses('up');
     } else if (event.key === 'ArrowDown') {
-        cycleGuesses('down')
+        cycleGuesses('down');
     }
 });
 
@@ -115,7 +130,7 @@ function submitGuess() {
     document.getElementById('guess-input').value = '';
 
     if (guess.toLowerCase() === currentSongName.toLowerCase()) {
-        console.log("correct!")
+        console.log("correct!");
         startGame();
     } else {
         if(guess !== '') guessHistory.unshift(guess);
@@ -139,11 +154,6 @@ function cycleGuesses(direction) {
     }
     
     document.getElementById('guess-input').value = guessHistory[guessIndex];
-}
-
-function toggleSettings() {
-    const settingsMenu = document.getElementById('settings-menu');
-    settingsMenu.classList.toggle('open');
 }
 
 function toggleScores() {

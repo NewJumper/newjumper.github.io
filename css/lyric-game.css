@@ -147,3 +147,27 @@
 #submit-guess:hover {
   background-color: #67afcb;
 }
+
+#filter-container {
+  margin-bottom: 20px;
+  height: 50vh;
+  display: none;
+}
+
+.artist-selection {
+  margin-bottom: 10px;
+}
+
+#filter-accept {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #3ea88e;
+  border: 1px solid #2e7c69;
+  border-radius: 10px;
+  width: 50%;
+  cursor: pointer;
+  display: none;
+}
+#filter-accept button:hover {
+  background-color: #47c0a1;
+}
