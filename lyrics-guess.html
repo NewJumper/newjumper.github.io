@@ -12,19 +12,17 @@
     <topbar>
       <header onclick="window.location.href='index.html'">newjumper</header>
       <img id="theme-toggle" src="resources/assets/global/dark-mode.svg" onclick="toggleTheme()">
-      <img id="settings" src="resources/assets/lyrics_guess/settings.svg" onclick="toggleSettings()">
       <img id="scores" src="resources/assets/lyrics_guess/scores.svg" onclick="toggleScores()">
+      <img id="settings" src="resources/assets/lyrics_guess/settings.svg" onclick="toggleSettings()">
     </topbar>
 
     <div class="triple-content">
-      <div class="sidebars" id="settings-menu">
-        Settings
+      <div class="sidebars" id="scores-menu">
+        Scores
       </div>
 
       <div id="game-container">
-        <div id="lyrics-container">
-          song lines here
-        </div>
+        <div id="lyrics-container"></div>
 
         <div id="input-container">
           <button id="skip-song" onclick="skipSong()">
@@ -37,8 +35,10 @@
         </div>
       </div>
 
-      <div class="sidebars" id="scores-menu">
-        Scores
+      <div class="sidebars" id="settings-menu">
+        <p>Settings</p>
+        <button>Gamemodes</button>
+        <button>Filters</button>
       </div>
     </div>
 
