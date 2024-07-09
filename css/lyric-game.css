@@ -2,7 +2,7 @@
 #scores {
   position: absolute;
   top: 11px;
-  left: 32px;
+  right: 70px;
   width: 32px;
   height: 32px;
   transition: 0.2s ease-in-out;
@@ -17,7 +17,7 @@
 #settings {
   position: absolute;
   top: 11px;
-  left: 70px;
+  right: 32px;
   width: 32px;
   height: 32px;
   transition: 0.2s ease-in-out;
