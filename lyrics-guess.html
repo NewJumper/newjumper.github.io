@@ -16,9 +16,21 @@
       <img id="settings" src="resources/assets/lyrics_guess/settings.svg" onclick="toggleSettings()">
     </topbar>
 
+    <div class="sidebars" id="scores-menu">
+      Scores
+    </div>
+    <div class="sidebars" id="settings-menu">
+      <p>Settings</p>
+      <button>Gamemodes</button>
+      <button onclick="editFilters()">Filters</button>
+    </div>
+
     <div class="triple-content">
-      <div class="sidebars" id="scores-menu">
-        Scores
+      <div id="score-container">
+        Total Score: 0<br>
+        Correct: 0<br>
+        Incorrect: 0<br>
+        Skipped: 0
       </div>
 
       <div id="game-container">
@@ -38,12 +50,6 @@
         <button id="filter-accept" onclick="acceptFilter()">
           Confirm Choices
         </button>
-      </div>
-
-      <div class="sidebars" id="settings-menu">
-        <p>Settings</p>
-        <button>Gamemodes</button>
-        <button onclick="editFilters()">Filters</button>
       </div>
     </div>
 

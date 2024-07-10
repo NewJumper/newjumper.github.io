@@ -6,6 +6,11 @@ let currentSong = [];
 let guessHistory = []
 let guessIndex = -1
 
+let totalScore;
+let correct;
+let incorrect;
+let skipped;
+
 let artists = ['AJR', 'Sabrina Carpenter', 'Taylor Swift', 'Twenty One Pilots'];
 let selectedArtists = ['AJR'];
 
@@ -20,6 +25,11 @@ async function loadSongs() {
     currentSongIndex = -1;
     currentSongName = "";
     currentSong = [];
+
+    totalScore = 0;
+    correct = 0;
+    incorrect = 0;
+    skipped = 0;
 
     const source = 'https://api.github.com/repos/NewJumper/newjumper.github.io/contents/resources/lyrics_guess/';
     let index = 0;
@@ -38,7 +48,6 @@ async function loadSongs() {
         }
     }
 
-    console.log(loadedSongs)
     shuffleIndices();
     startGame();
 }
@@ -105,7 +114,9 @@ function displayLyrics() {
 
 function skipSong() {
     if (currentSongIndex >= songIndices.length) return;
-    console.log('skipped');
+    skipped++;
+    totalScore -= 4;
+    document.getElementById('score-container').innerHTML = `Total Score: ${totalScore}<br>Correct: ${correct}<br>Incorrect: ${incorrect}<br>Skipped: ${skipped}`
     startGame();
 }
 
@@ -130,12 +141,17 @@ function submitGuess() {
     document.getElementById('guess-input').value = '';
 
     if (guess.toLowerCase() === currentSongName.toLowerCase()) {
-        console.log("correct!");
+        correct++;
+        totalScore += 7;
         startGame();
     } else {
         if(guess !== '') guessHistory.unshift(guess);
+        incorrect++;
+        totalScore--;
         displayLyrics();
     }
+
+    document.getElementById('score-container').innerHTML = `Total Score: ${totalScore}<br>Correct: ${correct}<br>Incorrect: ${incorrect}<br>Skipped: ${skipped}`
 }
 
 function cycleGuesses(direction) {
