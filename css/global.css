@@ -40,6 +40,21 @@ header:hover {
   background-color: #ffffff11;
 }
 
+#login-menu {
+  position: absolute;
+  top: 11px;
+  right: 32px;
+  width: 32px;
+  height: 32px;
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+  user-select: none;
+}
+#login-menu:hover {
+  transform: scale(1.1);
+  background-color: #ffffff11;
+}
+
 /* game 2 */
 canvas {
   margin: auto;

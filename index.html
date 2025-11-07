@@ -6,12 +6,14 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home-page.css">
     <script src="scripts/toggle-theme.js"></script>
+    <script src="scripts/login.js"></script>
   </head>
 
   <body>
-    <topbar>
+    <topbar style="color: aqua;">
       <header onclick="window.location.href='index.html'">newjumper</header>
       <img id="theme-toggle" src="resources/assets/global/dark-mode.svg" onclick="toggleTheme()">
+      <img id="login-menu" src="resources/assets/global/login.svg" onclick="tryLogin()">
     </topbar>
 
     <div class="menu-bar">
@@ -23,6 +25,9 @@
       </button>
       <button class="direct-button" onclick="window.location.href='testing.html'">
         Testing
+      </button>
+      <button class="direct-button" onclick="window.location.href='grid-test.html'">
+        Grid Test
       </button>
     </div>
 

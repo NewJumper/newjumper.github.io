@@ -88,6 +88,7 @@ function startGame() {
     const index = songIndices[currentSongIndex];
     currentSong = loadedSongs[index[0]][index[1]];
     currentSongName = currentSong[0].replace('=', '');
+    console.log(currentSongName);
 
     document.getElementById('lyrics-container').innerHTML = '';
     displayLyrics();
