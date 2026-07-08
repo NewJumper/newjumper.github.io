@@ -1,3 +1,41 @@
 body {
+	margin: 0;
 	background-color: #3f80c1;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 70vh;
+}
+
+h1 {
+	color: #fff;
+}
+
+.load-sheet {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.load-sheet input,
+.load-sheet button {
+	padding: 0.3rem 1rem;
+	background-color: #00304990;
+    border: 2px solid #04273a;
+	border-radius: 8px;
+
+	color: #ebf8ff;
+	font-weight: bold;
+}
+
+.load-sheet input::placeholder {
+	color: #95d5f8;
+}
+
+.load-sheet button {
+	cursor: pointer;
 }
