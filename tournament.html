@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament</title>
+
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="tournament-body">
+    <header>
+        <h3>Tournament Name</h3>
+    </header>
+
+    <main class="tournament-page">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <button>
+                    <img src="assets/images/players.svg" alt="Players">
+                </button>
+                <button>
+                    <img src="assets/images/format.svg" alt="Format">
+                </button>
+                <button>
+                    <img src="assets/images/seeding.svg" alt="Seeding">
+                </button>
+            </nav>
+
+            <section class="sidebar-content">
+                <div class="config-players">
+                    <h2>Players</h2>
+                    <div class="player-list"></div>
+                    <button id="add-player">Add Player</button>
+                    <button id="shuffle-players">
+                        <img src="assets/images/shuffle.svg" alt="Shuffle Players">
+                    </button>
+                </div>
+
+                <div class="config-stages">
+
+                </div>
+
+                <div class="config-seeding">
+
+                </div>
+            </section>
+        </aside>
+
+        <section class="bracket">B</section>
+    </main>
+
+	<script type="module" src="scripts/tournament.js"></script>
+</body>
+</html>
