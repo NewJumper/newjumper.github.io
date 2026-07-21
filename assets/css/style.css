@@ -94,6 +94,8 @@ header {
 }
 
 .sidebar-content {
+	color: #fff;
+
 	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-color: #0a315b #2565a5;
