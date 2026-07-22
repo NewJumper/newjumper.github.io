@@ -7,28 +7,32 @@ let width;
 let height;
 
 function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
+    const dpr = window.devicePixelRatio || 1;
 
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
 window.addEventListener("resize", resize);
 resize();
 
 const DEBUG = true;
-const CELL_COUNT = 11;
+const CELLS = 11;
 const points = [];
 
-for(let i = 0; i < CELL_COUNT; i++) {
-    const m = Math.random() * 2 - 1;
+for(let i = 0; i < CELLS; i++) {
     points.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.1) * 0.2,
-        vy: (Math.random() - 0.1) * 0.2,
-        magnetism: -1,
-        // color: "152 120 193",
+        vx: Math.random() * 0.2 - 0.1,
+        vy: Math.random() * 0.2 - 0.1,
         color: "255 255 255",
-        opacity: Math.random() * (m + 1) / 20
+        opacity: Math.random() * 0.1
     });
 }
 
@@ -67,11 +71,7 @@ function draw() {
     ctx.clearRect(0, 0, width, height);
     ctx.lineWidth = 1;
 
-    const delaunay = Delaunay.from(
-        points,
-        p => p.x,
-        p => p.y
-    );
+    const delaunay = Delaunay.from(points, p => p.x, p => p.y);
     const voronoi = delaunay.voronoi([0, 0, width, height]);
 
     for(let i = 0; i < points.length; i++) {
