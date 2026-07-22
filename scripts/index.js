@@ -21,7 +21,7 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-const DEBUG = true;
+const DEBUG = false;
 const CELLS = 11;
 const points = [];
 
@@ -75,7 +75,6 @@ function draw() {
     const voronoi = delaunay.voronoi([0, 0, width, height]);
 
     for(let i = 0; i < points.length; i++) {
-        ctx.strokeStyle = "#689ed4";
         const cell = voronoi.cellPolygon(i);
         if(!cell) continue;
 
@@ -87,8 +86,9 @@ function draw() {
         ctx.closePath();
 
         const p = points[i];
-        ctx.fillStyle = `rgb(${p.color} / ${p.opacity})`;
+        ctx.fillStyle = `rgb(${p.color} / ${calcOpacity(p)})`;
         ctx.fill();
+        ctx.strokeStyle = "#689ed4";
         ctx.stroke();
 
         if(DEBUG) {
@@ -104,8 +104,14 @@ function draw() {
             ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);
             ctx.fillStyle = `#fff`;
             ctx.fill();
+
+            ctx.fillText(Math.hypot(p.vx, p.vy), p.x, p.y);
         }
     }
+}
+
+function calcOpacity(p) {
+    return p.opacity;
 }
 
 function animate() {
