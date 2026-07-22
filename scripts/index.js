@@ -33,8 +33,8 @@ for(let i = 0; i < CELLS; i++) {
     points.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: Math.random() * 0.2 - 0.1,
-        vy: Math.random() * 0.2 - 0.1,
+        vx: Math.random() * 0.4 - 0.2,
+        vy: Math.random() * 0.4 - 0.2,
         ax: 0,
         ay: 0,
         color: "255 255 255",
@@ -122,7 +122,7 @@ function draw() {
             // velocity vector
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p.x + p.vx * 20, p.y + p.vy * 20);
+            ctx.lineTo(p.x + p.vx * 100, p.y + p.vy * 100);
             ctx.strokeStyle = "#000";
             ctx.stroke();
 
@@ -133,8 +133,8 @@ function draw() {
             ctx.fill();
 
             // other info
-            ctx.fillText(Math.hypot(p.vx, p.vy), p.x, p.y);
-            ctx.fillText(p.id, p.x, p.y + 12);
+            ctx.fillText(Math.hypot(p.vx, p.vy) * 10, p.x, p.y);
+            ctx.fillText(i, p.x, p.y + 12);
         }
     }
 }
